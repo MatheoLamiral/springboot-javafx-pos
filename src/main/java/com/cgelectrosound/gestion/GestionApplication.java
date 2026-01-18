@@ -17,7 +17,7 @@ public class GestionApplication extends Application {
 	@Override
 	public void start(Stage stage) throws Exception {
 		var context = SpringApplication.run(GestionApplication.class);
-		var fxml = new FXMLLoader(getClass().getResource("/Home.fxml"));
+		var fxml = new FXMLLoader(getClass().getResource("/views/Home.fxml"));
 		var scene = new Scene(fxml.load());
 		stage.setScene(scene);
 		stage.show();

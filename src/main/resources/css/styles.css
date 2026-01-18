@@ -1,0 +1,19 @@
+/* Esto aplicará a TODOS los botones de tu app */
+.button {
+    -fx-background-color: #e0e0e0;
+    -fx-text-fill: #333333;
+    -fx-font-size: 30px;
+    -fx-cursor: hand;
+}
+
+/* Una clase específica para tu color naranja */
+.boton-naranja {
+    -fx-background-color: #ffaa00;
+    -fx-text-fill: #000000;
+    -fx-font-weight: bold;
+}
+
+/* Efecto Hover (cuando pasas el mouse por encima) */
+.boton-naranja:hover {
+    -fx-background-color: #e68a00;
+}
