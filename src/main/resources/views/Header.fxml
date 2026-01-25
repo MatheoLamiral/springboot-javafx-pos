@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane prefHeight="100.0" prefWidth="1250.0" style="-fx-background-color: fb8500;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1">
+    <children>
+        <Label layoutX="26.0" layoutY="20.0" text="CG ElectroSound" textFill="Black">
+            <font>
+                <Font name="System Bold" size="40.0" />
+            </font>
+        </Label>
+
+        <AnchorPane AnchorPane.rightAnchor="30.0" AnchorPane.topAnchor="30.0">
+            <fx:include source="Navigation.fxml" />
+        </AnchorPane>
+
+    </children>
+</AnchorPane>

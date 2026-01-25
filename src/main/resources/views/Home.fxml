@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
+
 <?import javafx.scene.control.Button?>
-<?import javafx.scene.control.Label?>
+<?import javafx.scene.effect.DropShadow?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
@@ -8,17 +9,11 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane fx:controller="com.cgelectrosound.gestion.controllers.HomeController"
-            prefHeight="903.0" prefWidth="1250.0" stylesheets="@../css/styles.css"
-            xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1">
+<BorderPane fx:id="mainBorderPane" prefHeight="903.0" prefWidth="1250.0" stylesheets="@../css/styles.css" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.cgelectrosound.gestion.controllers.HomeController">
    <top>
       <AnchorPane prefHeight="119.0" prefWidth="1250.0" style="-fx-background-color: fb8500;" BorderPane.alignment="CENTER">
          <children>
-            <Label layoutX="26.0" layoutY="20.0" text="CG ElectroSound">
-               <font>
-                  <Font name="System Bold" size="50.0" />
-               </font>
-            </Label>
+            <fx:include source="Header.fxml" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
          </children>
       </AnchorPane>
    </top>
@@ -32,25 +27,37 @@
    <right>
       <VBox alignment="CENTER" prefHeight="784.0" prefWidth="643.0" spacing="20.0" BorderPane.alignment="CENTER">
          <children>
-            <Button mnemonicParsing="false" prefHeight="113.0" prefWidth="594.0" styleClass="boton-naranja" stylesheets="@../css/styles.css" text="Nueva Venta" onAction="#goToNewSale">
+            <Button mnemonicParsing="false" onAction="#goToNewSale" prefHeight="113.0" prefWidth="594.0" styleClass="boton-naranja" text="Nueva Venta">
                <font>
-                  <Font size="30.0" />
+                  <Font name="System Bold" size="30.0" />
                </font>
+               <effect>
+                  <DropShadow />
+               </effect>
             </Button>
-            <Button mnemonicParsing="false" prefHeight="113.0" prefWidth="594.0" styleClass="boton-naranja" stylesheets="@../css/styles.css" text="Stock">
+            <Button mnemonicParsing="false" onAction="#goToStock" prefHeight="113.0" prefWidth="594.0" styleClass="boton-naranja" text="Stock">
                <font>
                   <Font size="30.0" />
                </font>
+               <effect>
+                  <DropShadow />
+               </effect>
             </Button>
-            <Button mnemonicParsing="false" prefHeight="113.0" prefWidth="594.0" styleClass="boton-naranja" stylesheets="@../css/styles.css" text="Nuevo Servicio (Taller)">
+            <Button mnemonicParsing="false" onAction="#goToGarageServices" prefHeight="113.0" prefWidth="594.0" styleClass="boton-naranja" text="Servicios (Taller)">
                <font>
                   <Font size="30.0" />
                </font>
+               <effect>
+                  <DropShadow />
+               </effect>
             </Button>
-            <Button mnemonicParsing="false" prefHeight="113.0" prefWidth="594.0" styleClass="boton-naranja" stylesheets="@../css/styles.css" text="Finanzas">
+            <Button mnemonicParsing="false" onAction="#goToFinances" prefHeight="113.0" prefWidth="594.0" styleClass="boton-naranja" text="Finanzas">
                <font>
                   <Font size="30.0" />
                </font>
+               <effect>
+                  <DropShadow />
+               </effect>
             </Button>
          </children>
       </VBox>
