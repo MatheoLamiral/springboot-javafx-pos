@@ -31,3 +31,12 @@ build/
 
 ### VS Code ###
 .vscode/
+
+# Ignorar bases de datos SQLite
+*.db
+*.sqlite
+*.sqlite3
+tienda.db
+
+# Ignorar logs y archivos temporales
+*.log
