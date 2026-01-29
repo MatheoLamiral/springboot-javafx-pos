@@ -38,7 +38,7 @@
 
                         <Region HBox.hgrow="ALWAYS" />
 
-                        <Button fx:id="btnNuevaCompra" mnemonicParsing="false" onAction="#nuevaCompra" styleClass="boton-naranja" text="+ Nuevo Producto">
+                        <Button fx:id="btnNuevaCompra" mnemonicParsing="false" onAction="#newProduct" styleClass="boton-naranja" text="+ Nuevo Producto">
                             <font>
                                 <Font name="System Bold" size="16.0" />
                             </font>
@@ -51,7 +51,6 @@
 
                 <TableView fx:id="tblProductos" VBox.vgrow="ALWAYS">
                     <columns>
-                        <TableColumn fx:id="colId" maxWidth="80.0" minWidth="50.0" text="ID" />
                         <TableColumn fx:id="colNombre" prefWidth="200.0" text="Nombre del Producto" />
                         <TableColumn fx:id="colDescripcion" prefWidth="300.0" text="Descripción" />
                         <TableColumn fx:id="colStock" prefWidth="100.0" text="Stock" />

@@ -6,7 +6,7 @@
 
 <AnchorPane prefHeight="100.0" prefWidth="1250.0" style="-fx-background-color: fb8500;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1">
     <children>
-        <Label layoutX="26.0" layoutY="20.0" text="CG ElectroSound" textFill="Black">
+        <Label layoutX="26.0" layoutY="20.0" styleClass="titulo-header" text="CG ElectroSound" textFill="Black">
             <font>
                 <Font name="System Bold" size="40.0" />
             </font>

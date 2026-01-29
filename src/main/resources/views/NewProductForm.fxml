@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<VBox alignment="TOP_CENTER" spacing="20.0" style="-fx-background-color: white; -fx-border-color: #333; -fx-border-width: 2;" stylesheets="@../css/styles.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.cgelectrosound.gestion.controllers.NewProductFormController">
+
+    <padding>
+        <Insets bottom="30.0" left="40.0" right="40.0" top="30.0" />
+    </padding>
+
+    <children>
+        <Label text="Nuevo Producto" textFill="#ffaa00">
+            <font>
+                <Font name="System Bold" size="32.0" />
+            </font>
+        </Label>
+
+        <VBox spacing="10.0" VBox.vgrow="ALWAYS">
+            <children>
+                <Label text="Nombre del Producto:" />
+                <TextField fx:id="txtNombre" promptText="Ej: Aceite Shell 10W40" />
+
+                <Label text="Descripción:" />
+                <TextArea fx:id="txtDescripcion" prefHeight="100.0" promptText="Detalles adicionales..." wrapText="true" style="-fx-font-size: 20px;"/>
+
+                <HBox spacing="20.0">
+                    <children>
+                        <VBox HBox.hgrow="ALWAYS">
+                            <Label text="Precio Lista (Costo):" />
+                            <TextField fx:id="txtPrecioLista" promptText="0.00" />
+                        </VBox>
+                        <VBox HBox.hgrow="ALWAYS">
+                            <Label text="Precio Venta:" />
+                            <TextField fx:id="txtPrecioVenta" promptText="0.00" />
+                        </VBox>
+                    </children>
+                </HBox>
+
+                <Label text="Stock Inicial:" />
+                <TextField fx:id="txtStock" promptText="0" />
+            </children>
+        </VBox>
+
+        <HBox alignment="CENTER" spacing="20.0">
+            <children>
+                <Button cancelButton="true" mnemonicParsing="false" onAction="#close" styleClass="boton-oscuro" text="Cancelar" />
+                <Button defaultButton="true" mnemonicParsing="false" onAction="#save" styleClass="boton-naranja" text="Guardar Producto" />
+            </children>
+            <VBox.margin>
+                <Insets top="20.0" />
+            </VBox.margin>
+        </HBox>
+    </children>
+</VBox>
