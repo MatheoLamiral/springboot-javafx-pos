@@ -1,0 +1,54 @@
+@startuml
+class Product{
+- id: Integer
+- name: String
+- price: Real
+- description: String
+- actualStock: Integer
+- listPrice: Real
+}
+
+class GarageService{
+- id: Integer
+- serviceDate: Date
+- carName: String
+- carPatent: String
+- serviceDescription: String
+- serviceCosts: Real
+- servicePrice: Real
+}
+
+class Sale {
+- id: Integer
+- saleDate: Date
+- totalAmount: Real
+}
+
+class SaleDetail{
+- id: Integer
+- sale: Sale
+- quantity: Integer
+- unitPrice: Real
+- subtotal: Real
+}
+
+class Purchase{
+- id: Integer
+- purchaseDate: Date
+- totalCost: Real
+}
+
+class PurchaseDetail{
+- id: Integer
+- quantity: Integer
+- unitCost: Real
+- subtotal: Real
+}
+
+Sale -> SaleDetail : - items[*]
+SaleDetail --> Sale : - sale
+SaleDetail --> Product : - product
+Purchase -> PurchaseDetail : - items[*]
+PurchaseDetail --> Product : - product
+PurchaseDetail --> Purchase : - purchase
+@enduml

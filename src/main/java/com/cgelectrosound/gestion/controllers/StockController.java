@@ -1,7 +1,7 @@
 package com.cgelectrosound.gestion.controllers;
 
 import com.cgelectrosound.gestion.dtos.product.ProductResponseDTO;
-import com.cgelectrosound.gestion.persistence.entities.Product;
+import com.cgelectrosound.gestion.dtos.product.ProductUpdateDTO;
 import com.cgelectrosound.gestion.persistence.filters.ProductFilter;
 import com.cgelectrosound.gestion.services.ProductService;
 import javafx.beans.property.SimpleDoubleProperty;
@@ -12,11 +12,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.TableCell;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
-import javafx.scene.control.TextField;
-import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.control.*;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -28,6 +24,9 @@ import java.io.IOException;
 import java.text.NumberFormat;
 import java.util.List;
 import java.util.Locale;
+
+import static com.cgelectrosound.gestion.utils.Alerts.showAlert;
+import static com.cgelectrosound.gestion.utils.Alerts.showDeleteConfirmationAlert;
 
 @Controller
 public class StockController {
@@ -107,33 +106,42 @@ public class StockController {
 
     @FXML
     void newProduct(ActionEvent event) {
-        try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/views/NewProductForm.fxml"));
+        showModal("Nuevo Producto", "/views/NewProductForm.fxml");
+        loadProducts();
+    }
 
-            loader.setControllerFactory(context::getBean);
+    @FXML
+    void updateProduct(ActionEvent event) {
+        ProductResponseDTO selected = tblProductos.getSelectionModel().getSelectedItem();
 
-            Parent root = loader.load();
-
-            Stage stage = new Stage();
-            stage.setTitle("Nuevo Producto");
-            stage.setScene(new Scene(root));
-            stage.initModality(Modality.APPLICATION_MODAL);
-
-            stage.showAndWait();
-
-            loadProducts();
-
-        } catch (IOException e) {
-            e.printStackTrace();
+        if(selected == null){
+            showAlert("Atención","Selecciona un producto para editar");
+            return;
         }
+
+        showModal("Editar Producto", "/views/NewProductForm.fxml", true, selected);
+        loadProducts();
     }
 
     @FXML
-    void editarProducto(ActionEvent event) {
-    }
+    void deleteProduct(ActionEvent event) {
+        ProductResponseDTO selected = tblProductos.getSelectionModel().getSelectedItem();
 
-    @FXML
-    void eliminarProducto(ActionEvent event) {
+        if (selected == null){
+            showAlert("Atencion","Selecciona un producto para eliminar");
+            return;
+        }
+
+        Alert alert = showDeleteConfirmationAlert(selected.name());
+
+        if (alert.showAndWait().get() == ButtonType.OK) {
+            try {
+                productService.deleteProduct(selected.id());
+                loadProducts();
+            } catch (Exception e) {
+                showAlert("Error", "No se pudo eliminar: " + e.getMessage());
+            }
+        }
     }
 
     private String formatCoin(Double valor) {
@@ -144,5 +152,36 @@ public class StockController {
         formato.setMaximumFractionDigits(2);
 
         return "$ " + formato.format(valor);
+    }
+
+    private void showModal(String title, String resource){
+        showModal(title, resource, false, null);
+    }
+    private void showModal(String title, String resource, boolean edit, ProductResponseDTO selected){
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource(resource));
+
+            loader.setControllerFactory(context::getBean);
+
+            Parent root = loader.load();
+
+            if(edit && selected != null){
+                NewProductFormController controller = loader.getController();
+                controller.setProductData(selected);
+            }
+
+            Stage stage = new Stage();
+            stage.setTitle(title);
+            stage.setScene(new Scene(root));
+            stage.initModality(Modality.APPLICATION_MODAL);
+
+            stage.showAndWait();
+        } catch (IOException e){
+            e.printStackTrace();
+        }
+    }
+
+    private ProductResponseDTO selected(){
+        return tblProductos.getSelectionModel().getSelectedItem();
     }
 }

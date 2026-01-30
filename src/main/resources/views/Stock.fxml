@@ -64,8 +64,8 @@
 
                 <HBox alignment="CENTER_RIGHT" spacing="15.0">
                     <children>
-                        <Button fx:id="btnEditar" mnemonicParsing="false" onAction="#editarProducto" styleClass="boton-oscuro" text="Editar Seleccionado" />
-                        <Button fx:id="btnEliminar" mnemonicParsing="false" onAction="#eliminarProducto" styleClass="boton-peligro" text="Eliminar" />
+                        <Button fx:id="btnEditar" mnemonicParsing="false" onAction="#updateProduct" styleClass="boton-oscuro" text="Editar Seleccionado" />
+                        <Button fx:id="btnEliminar" mnemonicParsing="false" onAction="#deleteProduct" styleClass="boton-peligro" text="Eliminar" />
                     </children>
                 </HBox>
 

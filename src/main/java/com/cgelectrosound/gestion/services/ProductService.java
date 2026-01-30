@@ -2,6 +2,7 @@ package com.cgelectrosound.gestion.services;
 
 import com.cgelectrosound.gestion.dtos.product.ProductCreateDTO;
 import com.cgelectrosound.gestion.dtos.product.ProductResponseDTO;
+import com.cgelectrosound.gestion.dtos.product.ProductUpdateDTO;
 import com.cgelectrosound.gestion.persistence.entities.Product;
 import com.cgelectrosound.gestion.persistence.filters.ProductFilter;
 import com.cgelectrosound.gestion.persistence.repositories.ProductRepository;
@@ -41,6 +42,30 @@ public class ProductService {
         }
         Product newProduct = dto.toEntityProduct();
         return ProductResponseDTO.fromProduct(productRepository.save(newProduct));
+    }
+
+    public ProductResponseDTO updateProduct(Long id, ProductUpdateDTO dto){
+        Product product = productRepository.findById(id)
+                .orElseThrow(() -> new RuntimeException("Producto no encontrado para editar"));
+
+        if (!product.getName().equalsIgnoreCase(dto.name()) && productRepository.existsByNameIgnoreCase(dto.name())){
+            throw new RuntimeException("¡Ya existe otro producto con el nombre " + dto.name() + "!");
+        }
+
+        product.setName(dto.name());
+        product.setDescription(dto.description());
+        product.setPrice(dto.price());
+        product.setListPrice(dto.listPrice());
+        product.setActualStock(dto.actualStock());
+
+        return ProductResponseDTO.fromProduct(productRepository.save(product));
+    }
+
+    public void deleteProduct(Long id){
+        if(!productRepository.existsById(id)){
+            throw new RuntimeException("El producto que se desea eliminar no existe");
+        }
+        productRepository.deleteById(id);
     }
 
 }
